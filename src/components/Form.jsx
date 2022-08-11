@@ -26,13 +26,11 @@ function Form() {
       text: values.text,
     })
       .then((response) => {
-        setStatus(true);
         return true;
       })
 
       .catch((error) => {
-        setStatus(true);
-
+        console.log('error', error);
         return false;
       })
       .then((resultBoolean) => {
@@ -41,9 +39,11 @@ function Form() {
         } else {
           setStatus({ status: 'Форма не отправлена' });
         }
-        setValues({ username: '', email: '', phonenumber: '', birthday: '', text: '' });
+        if (resultBoolean) {
+          setValues({ username: '', email: '', phonenumber: '', birthday: '', text: '' });
+        }
 
-        console.log('result bulian че за хуета', resultBoolean);
+        console.log('result bulian', resultBoolean);
         return resultBoolean;
       });
   }
